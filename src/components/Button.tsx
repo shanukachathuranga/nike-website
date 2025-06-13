@@ -4,7 +4,7 @@ interface Props{
     backgroundColor?:string,
     borderColor?:string,
     textColor?:string,
-    fullWidth:boolean,
+    fullWidth?:boolean,
 }
 
 const Button = ({label, iconURL, backgroundColor, borderColor, textColor, fullWidth}: Props) => {
