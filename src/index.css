@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/*@layer components {*/
+/*    .max-container {*/
+/*        max-width: 1440px;*/
+/*        margin: 0 auto;*/
+/*    }*/
+
+/*    .input {*/
+/*        @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;*/
+/*    }*/
+/*}*/
+
+/*@layer utilities {*/
+/*    .padding {*/
+/*        @apply sm:px-16 px-8 sm:py-24 py-12;*/
+/*    }*/
+
+/*    .padding-x {*/
+/*        @apply sm:px-16 px-8;*/
+/*    }*/
+
+/*    .padding-y {*/
+/*        @apply sm:py-24 py-12;*/
+/*    }*/
+
+/*    .padding-l {*/
+/*        @apply sm:pl-16 pl-8;*/
+/*    }*/
+
+/*    .padding-r {*/
+/*        @apply sm:pr-16 pr-8;*/
+/*    }*/
+
+/*    .padding-t {*/
+/*        @apply sm:pt-24 pt-12;*/
+/*    }*/
+
+/*    .padding-b {*/
+/*        @apply sm:pb-24 pb-12;*/
+/*    }*/
+
+/*    .info-text {*/
+/*        @apply font-montserrat text-slate-gray text-lg leading-7;*/
+/*    }*/
+/*}*/
+
+/* Keep the imports and body styles from above */
+
+/*
+ * REPLACING @layer components
+ * We now write plain CSS, using theme() to access design tokens.
+ */
+
+@utility max-container {
+    /*max-width: theme(maxWidth.['1440px']); !* Or whatever key you have in your config *!*/
+    /* A common key for this is `screens.xl` or similar */
+    max-width: theme(screens.xl);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@utility input {
+    /* Base styles (mobile-first) */
+    width: 100%;
+    font-size: theme(fontSize.base);
+    line-height: theme(lineHeight.normal);
+    color: theme(colors.slate.gray);
+    padding: theme(spacing.5);
+    outline: none;
+    border: 1px solid theme(colors.slate.gray);
+    border-radius: 9999px;
+
+    /* sm: breakpoint and larger */
+    @media (min-width: theme(screens.sm)) {
+        flex: 1;
+        width: auto; /* Or let flexbox handle it */
+        border: none;
+        /* remove side padding if border is gone */
+        padding: 0 0 0 theme(spacing.5);
+        border-radius: 0;
+    }
+}
+
+/*
+ * REPLACING @layer utilities
+ * For simple utilities like padding, the v4 philosophy is to apply them
+ * directly in the HTML (e.g., class="sm:px-16 px-8").
+ * However, if you absolutely need these component classes, here's how you'd write them.
+ */
+
+@utility padding {
+    /* py-12 */
+    /* px-8 */
+    /* px-8 */
+    padding: theme(spacing.12) theme(spacing.8);
+
+    @media (min-width: theme(screens.sm)) {
+        /* sm:py-24 */
+        /* sm:px-16 */
+        /* sm:px-16 */
+        padding: theme(spacing.24) theme(spacing.16);
+    }
+}
+
+@utility padding-x {
+    padding-left: theme(spacing.8);
+    padding-right: theme(spacing.8);
+
+    @media (min-width: theme(screens.sm)) {
+        padding-left: theme(spacing.16);
+        padding-right: theme(spacing.16);
+    }
+}
+
+@utility padding-y {
+    padding-top: theme(spacing.12);
+    padding-bottom: theme(spacing.12);
+
+    @media (min-width: theme(screens.sm)) {
+        padding-top: theme(spacing.24);
+        padding-bottom: theme(spacing.24);
+    }
+}
+
+@utility padding-l{
+    padding-left: theme(spacing.8);
+    @media (min-width: theme(screens.sm)){
+        padding-left: theme(spacing.16);
+    }
+}
+
+@utility padding-r{
+    padding-right: theme(spacing.8);
+    @media (min-width: theme(screens.sm)){
+        padding-right: theme(spacing.16);
+    }
+}
+
+@utility padding-t{
+    padding-top: theme(spacing.12);
+    @media (min-width: theme(screens.sm)){
+        padding-top: theme(spacing.24);
+    }
+}
+
+@utility padding-b{
+    padding-bottom: theme(spacing.12);
+    @media (min-width: theme(screens.sm)){
+        padding-bottom: theme(spacing.12);
+    }
+}
+
+@utility info-text {
+    font-family: theme(fontFamily.montserrat);
+    color: theme(colors.slate.gray);
+    font-size: theme(fontSize.lg);
+    line-height: theme(lineHeight.7);
+}
